@@ -1,0 +1,18 @@
+{
+  "name": "necris/selectt",
+  "description": "Simple implementation of Select2 for Nette framework",
+  "authors": [
+    {
+      "name": "Jan Žalský",
+      "email": "jan@zalsky.cz",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=8.0",
+    "nette/application": ">=v3.1.0"
+  },
+  "autoload": {
+    "classmap": ["src/"]
+  }
+}
