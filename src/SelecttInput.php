@@ -20,12 +20,14 @@ class SelecttInput extends SelectBox
 	{
 		$this->dataSource = $dataSourceControl;
 		parent::__construct($label, []);
+
 	}
 
 
 	public function getControl(): \Nette\Utils\Html
 	{
-		$attributes = [];
+        $attributes = parent::getControl()->attributes;
+		//$attributes = [];
 		$attributes['data-select2-url'] = $this->getDataSource()->getLink();
 		$attributes['name'] = $this->getName();
 		$attributes['class'] = $this->getHtmlClass();
@@ -74,9 +76,7 @@ class SelecttInput extends SelectBox
 
 	protected function getSelectedItems(): array
 	{
-	    if($this->getValue() !== NULL && $this->selectedValue === NULL) {
-	        $this->setValue($this->value);
-        }
+        $this->setValue($this->value);
 		return $this->selectedValue !== NULL ? [$this->selectedValue->getId() => (string)$this->selectedValue] : [];
 	}
 

@@ -19,10 +19,10 @@ final class SelecttExtension extends CompilerExtension
 	{
 		$initializeMethod = $class->getMethod('initialize');
 		$cfg = json_encode($this->getConfig());
-		$initializeMethod->addBody(__CLASS__ . '::registerControls(\'' . $cfg . '\');');
+		$initializeMethod->addBody(__CLASS__ . '::registerFormExtension(\'' . $cfg . '\');');
 	}
 
-	public static function registerControls($cfg): void
+	public static function registerFormExtension($cfg): void
 	{
 		$cfg = json_decode($cfg, true);
 
