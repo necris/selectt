@@ -17,7 +17,7 @@ class ArrayDataSource implements SelecttDataSource
 
 	private function searchData(?string $query): array
 	{
-		$query = strtolower($query);
+		$query = strtolower($query ?? "");
 		$return = [];
 		foreach ($this->data as $key => $val) {
 			if (strpos(strtolower($val), $query) !== false) {

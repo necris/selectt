@@ -5,14 +5,14 @@ How to use:
 
 1. register extension in config:
 
-```
+```neon
 extensions:
     selectt: Selectt\DI\SelecttExtension
 ```
 
 2. add some configuration
 
-```
+```neon
 selectt:
   single:
     class: select2-ajax
@@ -33,7 +33,7 @@ Section `jsAttributes` contains any Slelect2 parameter you like. If you want to 
 3. include Select2 to your project
 4. init Select2 for desired class
 
-```
+```php
 $(function(){
     $('.select2-ajax').each(function () {
         let params = $(this).data().select2Params;
@@ -58,7 +58,7 @@ $(function(){
 ```
 
 5. create ajax autocomplete component with your own implementation of `Selectt\SelecttDataSource`
-```
+```php
 public function createComponentAutocomplete(): SelecttAutocompleteControl
 {
   $a = new SelecttAutocompleteControl(new ArrayDataSource([
@@ -76,13 +76,13 @@ public function createComponentAutocomplete(): SelecttAutocompleteControl
 ```
 
 6. finaly add select2 or multiselect to form. As second parameter provide autocomplete component!
-```
+```php
 public function createComponentForm(): Nette\Application\UI\Form
 {
     $f = new Nette\Application\UI\Form();
     $f->addText("text", "text");
     $f->addSelect2("select2", $this['autocomplete'], "Best select in the world");
-    $f->addSelect2multi("select2multi", $this['autocomplete'], "Best multiselect ever");
+    $f->addSelect2Multi("select2multi", $this['autocomplete'], "Best multiselect ever");
     .
     .
     .
