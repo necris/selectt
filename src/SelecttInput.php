@@ -39,7 +39,10 @@ class SelecttInput extends SelectBox
 
 		$items = $this->getSelectedItems();
 
-		$ctrl = Helpers::createSelectBox($items, NULL, array_keys($items))->addAttributes($attributes);
+        $ctrl = Helpers::createSelectBox($items, NULL, array_keys($items))
+            ->addAttributes($attributes)
+            ->addAttributes(parent::getControl()->attrs);
+
 		return $ctrl;
 	}
 
