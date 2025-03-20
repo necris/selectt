@@ -103,4 +103,12 @@ class SelecttInput extends SelectBox
 		$this->htmlClass = $class;
 		return $this;
 	}
+
+    public function setConfigResultsPerPage(int $configResultsPerPage): SelecttInput
+    {
+        $this->dataSource->setConfigResultsPerPage($configResultsPerPage);
+        return $this;
+    }
+
+
 }

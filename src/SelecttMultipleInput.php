@@ -125,4 +125,9 @@ class SelecttMultipleInput extends MultiSelectBox
     {
         return $this->htmlClass;
     }
+    public function setConfigResultsPerPage(int $configResultsPerPage): SelecttMultipleInput
+    {
+        $this->dataSourceControl->setConfigResultsPerPage($configResultsPerPage);
+        return $this;
+    }
 }

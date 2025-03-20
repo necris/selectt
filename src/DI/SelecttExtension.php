@@ -43,6 +43,9 @@ final class SelecttExtension extends CompilerExtension
 			if (isset($cfg['single']['class'])) {
 				$select->setHtmlClass($cfg['single']['class']);
 			}
+            if(isset($cfg['resultsPerPage'])){
+                $select->setConfigResultsPerPage((int)$cfg['resultsPerPage']);
+            }
 
 			return $select;
 		});
@@ -64,6 +67,9 @@ final class SelecttExtension extends CompilerExtension
 			if (isset($cfg['multi']['class'])) {
 				$select->setHtmlClass($cfg['multi']['class']);
 			}
+            if(isset($cfg['resultsPerPage'])){
+                $select->setConfigResultsPerPage((int)$cfg['resultsPerPage']);
+            }
 			return $select;
 		});
 
