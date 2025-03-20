@@ -16,8 +16,6 @@ class SelecttAutocompleteControl extends Control
     private const PAGE_PARAM_NAME = "page";
     private const DEFAULT_RESULTS_PER_PAGE = 20;
     private int $resultsPerPage;
-    private int $configResultsPerPage;
-
     private SelecttDataSource $dataSource;
     private bool $enableEmptyQuery = false;
 
@@ -121,9 +119,6 @@ class SelecttAutocompleteControl extends Control
     public function getResultsPerPage(): int
     {
         $resultsPerPage = self::DEFAULT_RESULTS_PER_PAGE;
-        if (isset($this->configResultsPerPage)) {
-            $resultsPerPage = $this->configResultsPerPage;
-        }
         if (isset($this->resultsPerPage)) {
             $resultsPerPage = $this->resultsPerPage;
         }
@@ -135,12 +130,5 @@ class SelecttAutocompleteControl extends Control
         $this->resultsPerPage = $resultsPerPage;
         return $this;
     }
-
-    public function setConfigResultsPerPage(?int $configResultsPerPage): SelecttAutocompleteControl
-    {
-        $this->configResultsPerPage = $configResultsPerPage;
-        return $this;
-    }
-
 
 }
