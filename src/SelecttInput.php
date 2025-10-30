@@ -10,6 +10,7 @@ use Nette\Utils\Json;
 
 class SelecttInput extends SelectBox
 {
+    private bool $validateDefaultValue = true;
 	private SelecttAutocompleteControl $dataSource;
 	private ?ResultEntity $selectedValue;
 	private $select2atts = [];
@@ -67,12 +68,14 @@ class SelecttInput extends SelectBox
 		$this->selectedValue = NULL;
 		if ($value !== NULL) {
 			$item = $this->getDataSource()->getDataSource()->findByKey($value);
-			if (!$item) {
-				throw new InvalidArgumentException(sprintf('Value "%s" is not allowed!', $value));
-			}
-
-			$item->setSelected(TRUE);
-			$this->selectedValue = $item;
+            if ($item) {
+                $item->setSelected(TRUE);
+                $this->selectedValue = $item;
+            } else {
+                if($this->validateDefaultValue) {
+                    throw new InvalidArgumentException(sprintf('Value "%s" is not allowed!', $value));
+                }
+            }
 		}
 
 		$this->value = $value === null ? null : key([(string)$value => null]);
@@ -103,6 +106,12 @@ class SelecttInput extends SelectBox
 		$this->htmlClass = $class;
 		return $this;
 	}
+
+    public function validateDefaultValue(bool $value = true): self
+    {
+        $this->validateDefaultValue = $value;
+        return $this;
+    }
 
 
 }

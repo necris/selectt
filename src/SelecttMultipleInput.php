@@ -10,6 +10,7 @@ use Nette\Utils\Json;
 
 class SelecttMultipleInput extends MultiSelectBox
 {
+    private bool $validateDefaultValue = true;
     private SelecttAutocompleteControl $dataSourceControl;
     /** @var ResultEntity[] */
     private array $selectedValues = [];
@@ -80,7 +81,9 @@ class SelecttMultipleInput extends MultiSelectBox
 
             $items = $this->dataSourceControl->getDataSource()->findByKeys($values);
             if (!$items) {
-                throw new InvalidArgumentException('Unexpected values!');
+                if($this->validateDefaultValue) {
+                    throw new InvalidArgumentException('Unexpected values!');
+                }
             }
 
             foreach ($items as $item) {
@@ -124,5 +127,11 @@ class SelecttMultipleInput extends MultiSelectBox
     private function getHtmlClass(): string
     {
         return $this->htmlClass;
+    }
+
+    public function validateDefaultValue(bool $value = true): self
+    {
+        $this->validateDefaultValue = $value;
+        return $this;
     }
 }
