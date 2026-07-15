@@ -39,7 +39,9 @@ class ArrayDataSource implements SelecttDataSource
 		foreach ($this->searchData($query) as $k => $v) {
 			$return[] = new ResultEntity($k, $v);
 		}
-
+        if(isset($limit) && $limit > 0 && isset($offset) && $offset >= 0) {
+            return array_slice($return, $offset, $limit, true);
+        }
 		return $return;
 	}
 
